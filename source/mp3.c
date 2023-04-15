@@ -45,7 +45,7 @@ int initMp3(const char* file)
 
 	if((mh = mpg123_parnew(pars, NULL, &err)) == NULL)
 	{
-		printf("Error: %s\n", mpg123_plain_strerror(err));
+		printf("Fehler: %s\n", mpg123_plain_strerror(err));
 		return err;
 	}
 
@@ -54,7 +54,7 @@ int initMp3(const char* file)
 	if(mpg123_open(mh, file) != MPG123_OK ||
 			mpg123_getformat(mh, (long *) &rate, (int *) &channels, &encoding) != MPG123_OK)
 	{
-		printf("Trouble with mpg123: %s\n", mpg123_strerror(mh));
+		printf("Probleme mit mpg123: %s\n", mpg123_strerror(mh));
 		return -1;
 	}
 
@@ -191,8 +191,8 @@ void playMp3(char* file) {
 		time_t newTime = time(NULL);
 		if(unixTime + 2 < newTime && Continue) 
 		{
-			printf("Just woke up from sleep!\n");
-			printf("Cleaning up everything and getting ready for a fresh new start!\n");
+			printf("Gerade erst aufgewacht!\n");
+			printf("Alles aufraeumen und fuer einen frischen Start vorbereiten!\n");
 			audoutExit();
 			audoutInitialize();
 			audoutStartAudioOut();
