@@ -191,8 +191,8 @@ void playMp3(char* file) {
 		time_t newTime = time(NULL);
 		if(unixTime + 2 < newTime && Continue) 
 		{
-			printf("Gerade erst aufgewacht!\n");
-			printf("Alles aufraeumen und fuer einen frischen Start vorbereiten!\n");
+			printf("Aus dem Schlaf geweckt!\n");
+			printf("Alles aufgeraeumt und bereit fuer einen frischen, neuen Start!\n");
 			audoutExit();
 			audoutInitialize();
 			audoutStartAudioOut();
