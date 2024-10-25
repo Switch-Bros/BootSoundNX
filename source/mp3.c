@@ -45,7 +45,7 @@ int initMp3(const char* file)
 
 	if((mh = mpg123_parnew(pars, NULL, &err)) == NULL)
 	{
-		printf("Fehler: %s\n", mpg123_plain_strerror(err));
+		printf("Error: %s\n", mpg123_plain_strerror(err));
 		return err;
 	}
 
@@ -54,7 +54,7 @@ int initMp3(const char* file)
 	if(mpg123_open(mh, file) != MPG123_OK ||
 			mpg123_getformat(mh, (long *) &rate, (int *) &channels, &encoding) != MPG123_OK)
 	{
-		printf("Probleme mit mpg123: %s\n", mpg123_strerror(mh));
+		printf("Trouble with mpg123: %s\n", mpg123_strerror(mh));
 		return -1;
 	}
 
@@ -185,14 +185,14 @@ void playMp3(char* file) {
 		}
 
         for(int curBuf = 0; curBuf < BUF_COUNT/2; curBuf++)
-            audoutWaitPlayFinish(&audout_released_buf, &released_count, UINT64_MAX);
+            audoutWaitPlayFinish(&audout_released_buf, &released_count, 1000000000L);
 
 		// Workaround to find out if the switch just woke up from sleep. If it did clear the buffer in order to prevent issues.
 		time_t newTime = time(NULL);
 		if(unixTime + 2 < newTime && Continue) 
 		{
-			printf("Aus dem Schlaf geweckt!\n");
-			printf("Alles aufgeraeumt und bereit fuer einen frischen, neuen Start!\n");
+			printf("Just woke up from sleep!\n");
+			printf("Cleaning up everything and getting ready for a fresh new start!\n");
 			audoutExit();
 			audoutInitialize();
 			audoutStartAudioOut();
